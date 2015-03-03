@@ -41,7 +41,7 @@ http://data.dws.informatik.uni-mannheim.de/dbpedia/2014/en/interlanguage_links_e
 
 for line in "$links"
 do
-    curl $line | bzcat | grep "\#sameAs" |  rapper -i ntriples -I - - file  2>/dev/null | cut -f1,3 -d '>' | sed 's/> </\t/g' | sed 's/> .&//g' | sed 's/^<//g' | sort -u
+    curl $line | bzcat | grep "\#sameAs" |  rapper -i ntriples -I - - file  2>/dev/null | cut -f1,3 -d '>' | sed 's/> </\t/g;s/> .&//g;s/^<//g' | sort -u
 done > ld.tsv
 
 DBUSER=root
